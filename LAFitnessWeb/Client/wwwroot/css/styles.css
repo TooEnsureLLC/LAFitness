@@ -1,0 +1,58 @@
+.conic-nav {
+  font-size: 27px; }
+  .conic-nav .active {
+    border-bottom: 2px solid orange; }
+  .conic-nav div {
+    background-color: #150f3ee3; }
+
+.box {
+  height: 100%;
+  margin-right: 10px; }
+  .box:last-child {
+    margin-right: 0; }
+
+.move-in-left {
+  animation-name: moveInLeft;
+  animation-duration: 1s; }
+
+.bar {
+  height: 7rem;
+  background-color: #ecd4b180;
+  padding: 2rem; }
+  .bar .logo {
+    width: 100%;
+    height: 100%; }
+
+.outer {
+  overflow: hidden; }
+
+.inner {
+  overflow-x: hidden;
+  overflow-y: hidden; }
+
+.hidden {
+  display: none; }
+
+.bg-carousel-img {
+  background-image: linear-gradient(to right, rgba(219, 143, 30, 0.747), #fad98cc7), url(../../../../img/females-exercise.jpg);
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+.la-primary-color {
+  background-color: #fdb813; }
+
+.lafitness-bg-primary-color {
+  background-color: #fdb813; }
+
+.bar-slide {
+  height: 7rem;
+  padding: 0 2rem;
+  overflow: hidden; }
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(100px); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }

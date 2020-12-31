@@ -1,0 +1,40 @@
+﻿@inject TooEnsure.Lib.Client.Services.Interface.ICarousel carouselService;
+@implements IDisposable;
+
+<div class="d-flex align-self-center">
+    <div class="p-2 mr-auto">
+        @foreach (var item in carouselService.Text)
+        {
+            css = item.Id == carouselService.CurrentId ? "move-in-left" : "hidden";
+            <div class="@css">
+                <span class="oi oi-grid-two-up"></span>
+                <span>@item.Text</span>
+            </div>
+        }
+    </div>
+    <div class="p-2">
+        @foreach (var item in carouselService.Text)
+        {
+            css = item.Id == carouselService.CurrentId ? "move-in-left" : "hidden";
+            <a href="#" class="btn btn-primary @css">@item.BtnText</a>
+        }
+    </div>
+</div>
+
+@code {
+    private string css = "move-in-left";
+    public int selectedId { get; set; }
+
+    Carousel carousel;
+
+    protected override void OnInitialized()
+    {
+        carouselService.SetTimer(4000);
+        carouselService.OnChange += StateHasChanged;
+    }
+    public void Dispose()
+    {
+        carouselService.OnChange -= StateHasChanged;
+    }
+
+}

@@ -1,0 +1,18 @@
+﻿<div class="@Mobile @Tablets @Desktops @Desktops @AddOns mb-3">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public string AddOns { get; set; }
+    [Parameter]
+    public string Mobile { get; set; }
+    [Parameter]
+    public string Tablets { get; set; }
+    [Parameter]
+    public string Desktops { get; set; }
+    [Parameter]
+    public string DesktopsPlus { get; set; }
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

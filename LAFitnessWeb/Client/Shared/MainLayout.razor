@@ -1,0 +1,50 @@
+﻿@inherits LayoutComponentBase
+
+
+
+<section class="add-ons outer">
+    <TopBar />
+    <NotificationBar />
+</section>
+<div class="page">
+
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <div class="main">
+        <section class="conic-nav d-flex justify-content-center top-row px-4 text-white">
+
+            <section class="box d-flex align-items-center active">
+                <div class="translate-middle badge rounded-circle p-2">
+                    <span class="oi oi-home "></span>
+                </div>
+            </section>
+
+            <section class="box d-flex align-items-center">
+                <div class="translate-middle badge rounded-circle p-2">
+                    <span class="oi oi-compass"></span>
+                </div>
+            </section>
+
+            <section class="box d-flex align-items-center">
+                <div class="translate-middle badge rounded-circle p-2">
+                    <span class="oi oi-globe "></span>
+                </div>
+            </section>
+        </section>
+        <!--
+                <div class="nav-icon">
+                <span class="oi oi-chat mr-2"></span>
+
+                <span class="oi oi-bell mr-2"></span>
+                <span class="oi oi-person mr-2"></span>
+                <span class="oi oi-caret-bottom"></span>
+            </div>
+    -->
+
+        <div class="content px-4">
+            @Body
+        </div>
+    </div>
+</div>
