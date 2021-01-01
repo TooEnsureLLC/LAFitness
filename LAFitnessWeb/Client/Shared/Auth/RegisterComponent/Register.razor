@@ -1,0 +1,84 @@
+<EditForm Model="user" OnValidSubmit="HandleRegister">
+    <DataAnnotationsValidator />
+    <div class="container border rounded p-3">
+        <div class="d-flex justify-content-center border-bottom mb-2">
+            <h3>Register</h3>
+        </div>
+        
+        <!--FIRSTNAME & LASTNAME-->
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <InputText id="firstName" @bind-Value="user.FirstName" class="form-control" />
+                    <ValidationMessage For="@(() => user.FirstName)" />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <InputText id="lastName" @bind-Value="user.LastName" class="form-control" />
+                    <ValidationMessage For="@(() => user.LastName)" />
+                </div>
+            </div>
+        </div>
+
+        <!--USERNAME && DOB && EMAIL-->
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <InputText id="username" @bind-Value="user.Username" class="form-control" />
+                    <ValidationMessage For="@(() => user.Username)" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="dateOfBirth">Date Of Birth</label>
+                    <InputDate id="dateOfBirth" @bind-Value="user.DataOfBirth" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <InputText id="email" @bind-Value="user.Email" class="form-control" />
+                    <ValidationMessage For="@(() => user.Email)" />
+                </div>
+            </div>
+        </div>
+
+        <!--PASSWORD & CONFIRMED_PASSWORD-->
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <InputText id="password" type="password" @bind-Value="user.Password" class="form-control" />
+                    <ValidationMessage For="@(() => user.Password)" />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="confirmedPassword">Confirmed Password:</label>
+                    <InputText id="confirmedPassword" type="password" @bind-Value="user.ConfirmedPassword" class="form-control" />
+                    <ValidationMessage For="@(() => user.ConfirmedPassword)" />
+                </div>
+
+            </div>
+        </div>
+
+        <!--CONFIRMED-->
+        <div class="d-flex justify-content-center">
+            <div class="form-group">
+                <InputCheckbox id="isConfirmed" @bind-Value="user.IsConfirmed" class="form-control" />
+                <label for="isConfirmed">Confirmed User:</label>
+                <ValidationMessage For="@(() => user.IsConfirmed)" />
+            </div>
+        </div>
+        <div class="d-flex justify-content-end">
+            <a href=""  class="btn btn-primary">Sign In</a>
+            <span class="p-1"></span>
+            <button type="submit" href="page/register" class="btn btn-primary text-white">Register</button>
+        </div>
+    </div>
+</EditForm>
+
