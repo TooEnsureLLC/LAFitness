@@ -1,0 +1,15 @@
+﻿@page "/admin/dashboard"
+
+@inject NavigationManager NavMan;
+
+
+<button @onclick="HandleNav" class="btn btn-primary">Articles</button>
+
+
+
+@code {
+    private void HandleNav()
+    {
+        NavMan.NavigateTo("admin/dashboard/page");
+    }
+}

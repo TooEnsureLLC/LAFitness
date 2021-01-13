@@ -1,0 +1,50 @@
+﻿        
+@inject Blazored.LocalStorage.ILocalStorageService LocalStorage;
+@inject AuthenticationStateProvider AuthStateProvider;
+@inject NavigationManager NavMan;
+
+<div class="d-flex justify-content-center">
+    <section class="border rounded-3" style="width:25rem;">
+        <article class="p-3">
+
+            <div class="d-flex justify-content-center">
+                <span class="oi oi-lock-locked h2"></span>
+            </div>
+            <div class="d-flex justify-content-center border-bottom mb-4">
+                <h3>Authentication</h3>
+            </div>
+
+            <EditForm Model="user" OnValidSubmit="HandleLoginAsync">
+                <DataAnnotationsValidator />
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <InputText id="username" @bind-Value="user.Username" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <InputText id="password" type="password" @bind-Value="user.Password" class="form-control" />
+                </div>
+                <ValidationSummary />
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <span class="p-1"></span>
+                    <a href="page/register" class="btn btn-primary">Register</a>
+                </div>
+
+            </EditForm>
+        </article>
+    </section>
+</div>
+
+
+@code {
+    private TooEnsure.Lib.Client.Models.Authentication.UserLogin user = new TooEnsure.Lib.Client.Models.Authentication.UserLogin();
+    private async void HandleLoginAsync()
+    {
+        System.Console.WriteLine($"user: {user.Username} pw: {user.Password}");
+        await LocalStorage.SetItemAsync<bool>("isAuthenticated", true);
+        await AuthStateProvider.GetAuthenticationStateAsync();
+        NavMan.NavigateTo("home");
+    }
+}

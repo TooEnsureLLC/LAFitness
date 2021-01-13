@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LAFitnessWeb.Server", "LAFitnessWeb\Server\LAFitnessWeb.Server.csproj", "{F534A3BE-5814-41FF-A8E6-747F6DE9C9F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LAFitnessWeb.Server", "LAFitnessWeb\Server\LAFitnessWeb.Server.csproj", "{F534A3BE-5814-41FF-A8E6-747F6DE9C9F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LAFitnessWeb.Client", "LAFitnessWeb\Client\LAFitnessWeb.Client.csproj", "{B256DA13-1F16-4C84-B995-FB6D5A72FB25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LAFitnessWeb.Client", "LAFitnessWeb\Client\LAFitnessWeb.Client.csproj", "{B256DA13-1F16-4C84-B995-FB6D5A72FB25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LAFitnessWeb.Shared", "LAFitnessWeb\Shared\LAFitnessWeb.Shared.csproj", "{177FCB66-463B-46EB-AB2D-1040F5EBDED7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LAFitnessWeb.Shared", "LAFitnessWeb\Shared\LAFitnessWeb.Shared.csproj", "{177FCB66-463B-46EB-AB2D-1040F5EBDED7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TooEnsure.Lib", "TooEnsure.Lib\TooEnsure.Lib.csproj", "{362FC22A-D96E-4AF4-8E02-611A66079C67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TooEnsure.Lib", "TooEnsure.Lib\TooEnsure.Lib.csproj", "{362FC22A-D96E-4AF4-8E02-611A66079C67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

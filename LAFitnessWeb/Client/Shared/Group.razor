@@ -1,0 +1,17 @@
+﻿
+@if (Horizontal)
+{
+    <section class="d-flex justify-content-between">
+        @ChildContent
+    </section>
+}
+
+@code {
+
+    [Parameter]
+    public bool Horizontal { get; set; } = true;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+}

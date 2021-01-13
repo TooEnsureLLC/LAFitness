@@ -1,50 +1,120 @@
 ﻿@inherits LayoutComponentBase
 
 
+@inject Blazored.LocalStorage.ILocalStorageService LocalStorage;
+@inject AuthenticationStateProvider AuthStateProvider;
+@inject NavigationManager NavMan;
+
 
 <section class="add-ons outer">
     <TopBar />
     <NotificationBar />
 </section>
-<div class="page">
-
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+<div class="page lafitness-theme-style">
+    <!-- Determine UI based on Authorization -->
+    <AuthorizeView>
+        <!-- Authorized UI View -->
+        <Authorized>
+            <!-- Only DIsplay Sidebar When Authorized -->
+            <div class="sidebar">
+                <NavMenu />
+            </div>
+        </Authorized>
+        <!-- End Authorized View -->
+    </AuthorizeView>
 
     <div class="main">
-        <section class="conic-nav d-flex justify-content-center top-row px-4 text-white">
+        <!-- Determine UI based on Authorization -->
+        <AuthorizeView>
+            <!-- Authorized UI View -->
+            <Authorized>
+                <!-- Navigation Bar Will Display -->
+                <Container Css="ensure-sticky top-row lafitness px-4 text-white" Horizontal="true">
+                    <!-- Left Side -->
+                    <Group Horizontal="true">
 
-            <section class="box d-flex align-items-center active">
-                <div class="translate-middle badge rounded-circle p-2">
-                    <span class="oi oi-home "></span>
-                </div>
-            </section>
+                        <SearchBar Icon="oi-magnifying-glass" />
+                    </Group>
+                    <!-- Right Side -->
+                    <Group Horizontal="true">
+                        <Dropdown Icon="oi-chat" FooterLink="user/messages">
+                             <p class="text-dark">user: @context.User.Identity.Name</p>
+                            <a href="#" type="button" class="list-group-item list-group-item-action disabled"
+                                tabindex="-1" aria-disabled="true">
+                                Beta Mode
+                            </a>
+                        </Dropdown>
 
-            <section class="box d-flex align-items-center">
-                <div class="translate-middle badge rounded-circle p-2">
-                    <span class="oi oi-compass"></span>
-                </div>
-            </section>
+                        <!-- Notification -->
+                        <Dropdown Icon="oi-bell" FooterLink="user/notifications">
+                             <p class="text-dark">user: @context.User.Identity.Name</p>
+                            <a href="#" type="button" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">
+                                Beta Mode
+                            </a>
+                        </Dropdown>
 
-            <section class="box d-flex align-items-center">
-                <div class="translate-middle badge rounded-circle p-2">
-                    <span class="oi oi-globe "></span>
-                </div>
-            </section>
-        </section>
-        <!--
-                <div class="nav-icon">
-                <span class="oi oi-chat mr-2"></span>
+                        <!-- Profile -->
+                        <Dropdown Icon="oi-person">
+                            <p class="text-dark">user: @context.User.Identity.Name</p>
+                            <a href="#" type="button" class="list-group-item list-group-item-action disabled"
+                                tabindex="-1" aria-disabled="true">
+                                Profile
+                            </a>
+                            <a href="#" type="button" class="list-group-item list-group-item-action disabled"
+                                tabindex="-1" aria-disabled="true">
+                                Help Center & Support
+                            </a>
 
-                <span class="oi oi-bell mr-2"></span>
-                <span class="oi oi-person mr-2"></span>
-                <span class="oi oi-caret-bottom"></span>
-            </div>
-    -->
+                            <a href="#" type="button" class="list-group-item list-group-item-action disabled"
+                                tabindex="-1" aria-disabled="true">
+                                Settings
+                            </a>
+                            <a @onclick="Logout" type="button" class="list-group-item list-group-item-action text-dark">
+                                Logout
+                            </a>
+                        </Dropdown>
+                    </Group>
+                    <!-- End Navigation Bar -->
+                </Container>
+                <!-- End Authurized View -->
+            </Authorized>
+            <!-- Not Authorized UI View -->
+            <NotAuthorized>
+                <!-- Navigation Bar Will Display -->
+                <Container Css="ensure-sticky top-row lafitness px-4 text-white" Horizontal="true">
+                    <!-- Left Side -->
+                    <Group Horizontal="true">
+
+                        <SearchBar Icon="oi-magnifying-glass" />
+                    </Group>
+                    <!-- Right Side -->
+                    <Group Horizontal="true">
+                        <Dropdown Icon="oi-person">
+                            <a href="page/login" type="button" class="list-group-item list-group-item-action">Login</a>
+                            <a href="page/login" type="button"
+                                class="list-group-item list-group-item-action">Register</a>
+                        </Dropdown>
+                    </Group>
+                    <!-- End Navigation Bar -->
+                </Container>
+
+                <!-- End Not Authurized View -->
+            </NotAuthorized>
+        </AuthorizeView>
+
 
         <div class="content px-4">
             @Body
         </div>
     </div>
 </div>
+
+@code {
+
+    private async void Logout()
+    {
+        await LocalStorage.RemoveItemAsync("isAuthenticated");
+        await AuthStateProvider.GetAuthenticationStateAsync();
+        NavMan.NavigateTo("home");
+    }
+}

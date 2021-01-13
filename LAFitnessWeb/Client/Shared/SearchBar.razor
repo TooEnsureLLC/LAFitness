@@ -1,0 +1,33 @@
+﻿<!-- Tooensure CSS Library -->
+
+
+<section class="en-search">
+    <section class="en-search__icon" @onclick="DisplaySearch">
+        <!-- Bootstrape CSS Library -->
+        <ButtonEdit Icon="@Icon" />
+        <!-- End Bootstrape CSS Library -->
+    </section>
+    <section class="en-search__input d-flex align-items-center @TooensureSearchCssClass">
+        <!-- Bootstrape CSS Library -->
+        <div class="input-group-sm">
+            <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <!-- End Bootstrape CSS Library -->
+
+    </section>
+</section>
+<!-- End Tooensure CSS Library -->
+
+@code {
+    [Parameter]
+    public string Icon { get; set; }
+
+    private bool displaySearchBar = false;
+
+    public string TooensureSearchCssClass => displaySearchBar ? "none" : null;
+
+    public void DisplaySearch()
+    {
+        displaySearchBar = !displaySearchBar;
+    }
+} 

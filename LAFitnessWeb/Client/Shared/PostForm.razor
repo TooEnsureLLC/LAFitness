@@ -1,0 +1,43 @@
+﻿@inject TooEnsure.Lib.Client.Services.Interface.IPost PostService;
+
+@implements IDisposable;
+
+<EditForm Model="post" OnValidSubmit="HandlePost">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <InputText id="title" @bind-Value="post.Title" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="content">Content:</label>
+        <InputText id="content" type="content" @bind-Value="post.Content" class="form-control" />
+    </div>
+    <ValidationSummary />
+    <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary">Sumit</button>
+    </div>
+</EditForm>
+
+
+
+@code {
+    TooEnsure.Lib.Client.Models.Article.TextedPost post = new TooEnsure.Lib.Client.Models.Article.TextedPost();
+
+    private void HandlePost()
+    {
+        PostService.AddPost(1, post.Title, post.Content);
+        post.Title = null;
+        post.Content = null;
+    }
+
+    protected override void OnInitialized()
+    {
+        PostService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        PostService.OnChange -= StateHasChanged;
+    }
+}

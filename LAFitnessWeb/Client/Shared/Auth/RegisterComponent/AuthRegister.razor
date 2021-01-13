@@ -1,10 +1,16 @@
+﻿ 
+@inject TooEnsure.Lib.Client.Services.Interface.IAuthService authService;
+@inject NavigationManager NavMan;
+@using TooEnsure.Lib.Client.Models.Authentication;
+
+
 <EditForm Model="user" OnValidSubmit="HandleRegister">
     <DataAnnotationsValidator />
     <div class="container border rounded p-3">
         <div class="d-flex justify-content-center border-bottom mb-2">
             <h3>Register</h3>
         </div>
-        
+
         <!--FIRSTNAME & LASTNAME-->
         <div class="row">
             <div class="col-sm-6">
@@ -75,10 +81,30 @@
             </div>
         </div>
         <div class="d-flex justify-content-end">
-            <a href=""  class="btn btn-primary">Sign In</a>
+            <a href="page/login" class="btn btn-primary">Sign In</a>
             <span class="p-1"></span>
             <button type="submit" href="page/register" class="btn btn-primary text-white">Register</button>
         </div>
     </div>
 </EditForm>
 
+
+@code {
+    UserRegister user = new UserRegister();
+
+
+    async void HandleRegister()
+    {
+        var result = await authService.Register(user);
+
+        if (result.Success)
+        {
+            System.Console.WriteLine($"Adding user to database");
+            NavMan.NavigateTo("page/login");
+        } else
+        {
+            Console.WriteLine("Error Register");
+        }
+
+    }
+}

@@ -1,0 +1,30 @@
+﻿<NavLink href="@Link" ActiveClass="active">
+    <section class="ensure-btn p-2 text-white">
+        <div class="translate-middle badge rounded-circle p-2" style="background-color">
+            <span class="oi @Icon"></span>
+        </div>
+        <span class="ensure-btn-text">@Text</span>
+    </section> 
+</NavLink>
+
+
+@code {
+    public string cssStyle { get; set; }
+
+    [Parameter]
+    public string Text { get; set; }
+
+    [Parameter]
+    public string Link { get; set; }
+
+    [Parameter]
+    public string Custom { get; set; }
+
+    [Parameter]
+    public string Icon { get; set; }
+
+ 
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

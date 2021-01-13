@@ -1,0 +1,37 @@
+﻿@page "/user/{Id:int}"
+
+
+@inject TooEnsure.Lib.Client.Services.Interface.IPost PostService;
+
+@if (PostService.Articles.Count > 0)
+{
+    @foreach (var article in PostService.Articles)
+    {
+        if (article.ID == Id)
+        {
+            <section class="en-page">
+                <div class="article">
+                    <img src="https://img.glyphs.co/img?src=aHR0cHM6Ly9zMy5tZWRpYWxvb3QuY29tL2Jsb2ctaW1hZ2VzL3dnLWhlcm8taW1hZ2UtMjAxOS10cmVuZHMtNS5qcGc/bXRpbWU9MjAxOTAyMTQxMjExMTI=&w=1710&h=645&fit=crop&enlarge=true&q=85" class="card-img-top" alt="...">
+                    <h3 class="article__title mt-3">@(article.Title)</h3>
+                    <hr />
+                    <p class="article__content">@(article.Content)</p>
+                </div>
+            </section>
+        }
+    }
+}
+else
+{
+    <span>Loading Articles..</span>
+}
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        await PostService.LoadArticlesAsync();
+
+    }
+}

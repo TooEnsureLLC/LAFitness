@@ -1,0 +1,21 @@
+﻿@if (Horizontal)
+{
+    <section class="d-flex justify-content-between @Css" style="background-color:@BackgroundColor;">
+        @ChildContent
+    </section>
+}
+
+@code {
+    [Parameter]
+    public string Css { get; set; }
+
+    [Parameter]
+    public string BackgroundColor { get; set; }
+
+    [Parameter]
+    public bool Horizontal { get; set; } = true;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+}

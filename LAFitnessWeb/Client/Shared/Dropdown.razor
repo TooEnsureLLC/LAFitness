@@ -1,0 +1,34 @@
+<section class="dropdown">
+    <div class="dropbtn" @onclick="DisplaySearch">
+        <ButtonEdit Icon="@Icon"/>
+    </div>
+    <div class="dropdown-content @TooensureDropdown">
+        <div class="list-group">
+            @ChildContent
+            <a href="@FooterLink" type="button" class="list-group-item list-group-item-action text-center text-dark">
+            Get Gym Membership
+            </a>
+        </div>
+    </div>
+    
+</section>
+
+@code {
+    [Parameter]
+    public string Icon { get; set; }
+
+    [Parameter]
+    public string FooterLink { get; set; }
+
+    private bool displayDropdown = true;
+
+    public string TooensureDropdown => displayDropdown ? "none" : null;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    public void DisplaySearch()
+    {
+        displayDropdown = !displayDropdown;
+    }
+}

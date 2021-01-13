@@ -1,75 +1,123 @@
 ﻿@page "/"
+
+@inject TooEnsure.Lib.Client.Services.Interface.IPost PostService;
+
+
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Library</li>
-  </ol>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item" aria-current="page">Library</li>
+    </ol>
 </nav>
-
+<!--PostService.Articles.FirstOrDefault(post => post.ID == selectedPostId).Title-->
+<PostForm />
 <GridRow>
-  <GridCol Mobile="col-sm-12" Tablets="col-md-6" Desktops="col-lg-4" DesktopsPlus="col-xl-3">
-    <div class="card">
-      <img src="img/females-exercise.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.
-        </p>
 
-      </div>
-    </div>
-  </GridCol>
-  <GridCol Mobile="col-sm-12" Tablets="col-md-6" Desktops="col-lg-4" DesktopsPlus="col-xl-3">
-    <div class="card">
-      <img src="img/females-exercise.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.
-        </p>
-
-      </div>
-    </div>
-  </GridCol>
-  <GridCol Mobile="col-sm-12" Tablets="col-md-6" Desktops="col-lg-4" DesktopsPlus="col-xl-3">
-    <div class="card">
-      <img src="img/females-exercise.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.
-        </p>
-
-      </div>
-    </div>
-  </GridCol>
-  <GridCol Mobile="col-sm-12" Tablets="col-md-6" Desktops="col-lg-4" DesktopsPlus="col-xl-3">
-    <div class="card">
-      <img src="img/females-exercise.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.
-        </p>
-
-      </div>
-    </div>
-  </GridCol>
-  <GridCol Mobile="col-sm-12" Tablets="col-md-6" Desktops="col-lg-4" DesktopsPlus="col-xl-3">
-    <div class="card">
-      <img src="img/females-exercise.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.
-        </p>
-
-      </div>
-    </div>
-  </GridCol>
+    @if (PostService.Articles.Count > 0)
+    {
+        @foreach (var article in PostService.Articles)
+        {
+            <GridCol Mobile="col-sm-12" Tablets="col-md-6" Desktops="col-lg-4" DesktopsPlus="col-xl-3">
+                <div class="card">
+                    <img src="img/females-exercise.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@(article.Title)</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </GridCol>
+        }
+    }
+    else
+    {
+        <span>Loading Articles..</span>
+    }
 </GridRow>
+
+
+<!--
+<GridRow>
+    <GridCol Mobile="col-sm-12" Tablets="col-md-6" Desktops="col-lg-4" DesktopsPlus="col-xl-3">
+        <div class="card">
+            <img src="img/females-exercise.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the bulk of the card's
+                    content.
+                </p>
+
+            </div>
+        </div>
+    </GridCol>
+    <GridCol Mobile="col-sm-12" Tablets="col-md-6" Desktops="col-lg-4" DesktopsPlus="col-xl-3">
+        <div class="card">
+            <img src="img/females-exercise.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the bulk of the card's
+                    content.
+                </p>
+
+            </div>
+        </div>
+    </GridCol>
+    <GridCol Mobile="col-sm-12" Tablets="col-md-6" Desktops="col-lg-4" DesktopsPlus="col-xl-3">
+        <div class="card">
+            <img src="img/females-exercise.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the bulk of the card's
+                    content.
+                </p>
+
+            </div>
+        </div>
+    </GridCol>
+    <GridCol Mobile="col-sm-12" Tablets="col-md-6" Desktops="col-lg-4" DesktopsPlus="col-xl-3">
+        <div class="card">
+            <img src="img/females-exercise.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the bulk of the card's
+                    content.
+                </p>
+
+            </div>
+        </div>
+    </GridCol>
+    <GridCol Mobile="col-sm-12" Tablets="col-md-6" Desktops="col-lg-4" DesktopsPlus="col-xl-3">
+        <div class="card">
+            <img src="img/females-exercise.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the bulk of the card's
+                    content.
+                </p>
+
+            </div>
+        </div>
+    </GridCol>
+</GridRow>
+    -->
 @* <HeroCarousel /> *@
 <h1>Hello, world!</h1>
 
-Welcome to your new app..
+    Welcome to your new app..
 <SurveyPrompt Title="How is our gym working for you?" />
+
+
+@code {
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        await PostService.LoadArticlesAsync();
+
+    }
+}

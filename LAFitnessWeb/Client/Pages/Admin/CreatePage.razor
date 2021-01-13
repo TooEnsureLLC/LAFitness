@@ -1,0 +1,54 @@
+﻿
+@page "/admin/dashboard/create/page/article";
+
+@inject TooEnsure.Lib.Client.Services.Interface.IPageService pageService;
+@inject NavigationManager NavMan;
+
+<EditForm Model="article" OnValidSubmit="HandleRegister">
+    <DataAnnotationsValidator />
+    <div class="container border rounded p-3">
+        <div class="d-flex justify-content-center border-bottom mb-2">
+            <h3>Add Article Page</h3>
+        </div>
+
+        <div class="form-group">
+            <label for="imageUri">Image URI:</label>
+            <InputText id="imageUri" @bind-Value="article.ImageUri" class="form-control" />
+            <ValidationMessage For="@(() => article.ImageUri)" />
+        </div>
+
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <InputText id="title" @bind-Value="article.Title" class="form-control" />
+            <ValidationMessage For="@(() => article.Title)" />
+        </div>
+
+        <div class="form-group">
+            <label for="content">Content:</label>
+            <InputText id="content" @bind-Value="article.Content" class="form-control" />
+            <ValidationMessage For="@(() => article.Content)" />
+        </div>
+        <button type="submit" class="btn btn-primary text-white">Create</button>
+    </div>
+</EditForm>
+
+
+
+@code {
+    TooEnsure.Lib.Client.Models.Pages.ArticlePage article = new TooEnsure.Lib.Client.Models.Pages.ArticlePage();
+
+
+    private async void HandleRegister()
+    {
+        var result = await pageService.CreatePage(article);
+
+        if (result.Success)
+        {
+            System.Console.WriteLine($"Adding user to database");
+        }
+        else
+        {
+            Console.WriteLine("Error Register");
+        }
+    }
+}
